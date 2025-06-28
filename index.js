@@ -13,23 +13,17 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:5173', 'https://pms-frontend.syolosoft.com','https://project-management-system.aakashprojects.tech/'], // Replace with your frontend URL
-    methods: ['GET', 'POST','PUT','DELETE'],
-    credentials: true,
+    origin: '*'             // ✅ Accept connections from *any* origin
+    // If you *must* send cookies/auth headers, see “Credentials + *”
   },
-  transports: ['websocket', 'polling'], // Explicitly support both
+  transports: ['websocket', 'polling'],
 });
 
 // Make io accessible to routes/controllers
 app.set('io', io);
 
 // Configure Express CORS
-app.use(cors({
-  origin: ['http://localhost:5173', 'https://pms-frontend.syolosoft.com'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
-}));
+app.use(cors()); 
 app.use(bodyParser.json());
 
 app.use('/api', authRoutes);
