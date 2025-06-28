@@ -13,8 +13,8 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:5173', 'https://pms-frontend.syolosoft.com'], // Replace with your frontend URL
-    methods: ['GET', 'POST'],
+    origin: ['http://localhost:5173', 'https://pms-frontend.syolosoft.com','https://project-management-system.aakashprojects.tech/'], // Replace with your frontend URL
+    methods: ['GET', 'POST','PUT','DELETE'],
     credentials: true,
   },
   transports: ['websocket', 'polling'], // Explicitly support both
